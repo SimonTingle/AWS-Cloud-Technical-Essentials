@@ -1,0 +1,59 @@
+What problem does the AWS Cloud Development Kit (CDK) primarily solve?,"It solves the problem of creating and managing complex cloud architectures, which is difficult and error-prone to do manually in the AWS console."
+"CDK allows you to define your cloud infrastructure using familiar programming languages, which then compiles into what AWS service's template format?",AWS CloudFormation.
+"What are the three core concepts in an AWS CDK application that represent resources, containers for resources, and the entire project?","Constructs, Stacks, and Apps."
+"In the CDK object model, what is the term for a building block that can represent a single AWS resource or a collection of resources?",A Construct.
+"What is the relationship between an App, Stacks, and Constructs in a CDK project?","An App is the top-level container that can contain multiple Stacks, and each Stack can contain multiple Constructs."
+What is the purpose of a Stack in an AWS CDK application?,A Stack is a container used to logically organize and group related constructs (AWS resources).
+"CDK constructs that are the lowest level, map 1:1 with CloudFormation resources, and are prefixed with 'Cfn' are known as _____ constructs.",Level 1 (L1)
+"Which level of CDK construct is considered the 'bread and butter' for most development, offering sensible defaults, security best practices, and convenient helper methods for a single AWS resource?",Level 2 (L2) constructs.
+"A CDK construct that encapsulates multiple AWS resources to form a common architectural pattern, such as a load-balanced web service, is known as a _____ construct.",Level 3 (L3) or a construct pattern.
+What is the main trade-off when choosing a high-level L3 construct over composing an architecture with L2 constructs?,You sacrifice granular control and configuration for development speed and convenience.
+What CDK CLI command is used to initialize a new CDK project in a specified programming language?,cdk init app --language <language>
+The CDK CLI command `cdk synth` performs what action?,It synthesizes the CDK code into a CloudFormation template without deploying it.
+What is the primary CDK CLI command used to compile the code and deploy the infrastructure to your AWS account?,cdk deploy
+What one-time setup command must be run in an AWS account/region before you can deploy your first CDK application?,cdk bootstrap
+What does the `cdk bootstrap` command create in your AWS account?,It creates a CloudFormation stack named 'CDKToolkit' which includes resources like an S3 bucket for storing assets and IAM roles needed for deployments.
+Which CDK CLI command monitors your project files for changes and automatically triggers a deployment when a file is saved?,cdk watch
+What CDK CLI command is used to tear down all the resources defined in a stack?,cdk destroy
+"In a CDK L2 construct, what is the purpose of a helper method like `table.grantReadWriteData(myFunction)`?",It automatically creates and attaches the necessary IAM policy to allow the function to perform read and write operations on the DynamoDB table.
+What is the primary benefit of defining infrastructure as code with CDK regarding version control?,"It allows infrastructure changes to be stored in source control (like Git), enabling features like peer review through pull requests and tracking change history."
+What is the AWS Command Line Interface (CLI)?,It is a tool that allows you to manage and control AWS services from your terminal by running commands.
+What command is used to initially configure the AWS CLI with your credentials?,aws configure
+What two pieces of credential information are required when running `aws configure` to connect to your AWS account?,An AWS Access Key ID and an AWS Secret Access Key.
+Where in the AWS console can you generate an Access Key ID and Secret Access Key for a user?,"In the IAM (Identity and Access Management) service, under the specific user's 'Security credentials' tab."
+Why is it considered a security risk to use `aws configure` with long-lived access keys on a server or EC2 instance?,"The keys are stored in a plain text file on the machine, and anyone with access to the server could potentially gain access to your AWS account."
+"What is the recommended security best practice for granting AWS permissions to services like EC2 instances, instead of using stored access keys?",Using IAM Roles.
+"How can you get detailed documentation and a list of available commands for a specific AWS service in the CLI, for example, for S3?","By appending 'help' to the command, such as `aws s3 help`."
+What popular command-line JSON processor is often recommended for use with the AWS CLI to filter and format its JSON output?,jq
+Which AWS CLI S3 command is used to list all of your S3 buckets?,aws s3 ls
+"To create a new S3 bucket from the AWS CLI, you would use the command `aws s3 _____`.",mb
+What is the correct syntax for the path argument when referring to an S3 bucket or object in the AWS CLI?,"It must be an S3 URI, which starts with `s3://`, for example, `s3://my-bucket/my-file.txt`."
+The AWS CLI command `aws s3 cp <source> <destination>` is used for what purpose?,"To copy a local file to S3, an S3 object to a local file, or an S3 object from one location to another."
+"Which command is used to efficiently synchronize the contents of a local directory with an S3 bucket, only transferring new or modified files?",aws s3 sync
+The AWS CLI command `aws s3 rb s3://<bucket-name>` performs what action?,It removes (deletes) an S3 bucket.
+Which AWS CLI command lists all IAM users in your account?,aws iam list-users
+"To create a new IAM user named 'newuser' from the CLI, you would run `aws iam _____ --user-name newuser`.",create-user
+What command would you use to list information about your EC2 instances?,aws ec2 describe-instances
+"To stop an EC2 instance with a specific ID from the CLI, you would use the command `aws ec2 _____ --instance-ids <id>`.",stop-instances
+"To terminate (permanently delete) an EC2 instance from the CLI, you would use the command `aws ec2 _____ --instance-ids <id>`.",terminate-instances
+"In AWS CLI `s3` commands, what do the `--exclude` and `--include` parameters allow you to do?",They allow you to perform pattern matching to either exclude or include specific files or objects from an operation.
+"When using multiple `--exclude` and `--include` filters in an AWS CLI command, which filter takes precedence?",The filter that appears later in the command takes precedence.
+What is the command to list all Lambda functions in your account using the AWS CLI?,aws lambda list-functions
+How do you delete a security group using the AWS CLI?,aws ec2 delete-security-group --group-id <sg-id>
+What is the AWS CLI command to list all CloudFormation stacks?,aws cloudformation list-stacks
+The AWS CLI command `aws sqs list-queues` performs what function?,It lists the URLs of all your SQS queues.
+How can you create a new SQS queue named 'my-queue' using the AWS CLI?,aws sqs create-queue --queue-name my-queue
+"What is one of the primary benefits of using the AWS CLI for a DevOps engineer, as mentioned in the source material?","Automation and scripting, allowing for faster and more consistent deployment of AWS resources compared to the manual console."
+The `cdk migrate` command is a feature that helps you do what?,It helps you import existing resources from your AWS account (created manually) into a new CDK project.
+"In the context of the AWS CLI, what does `aws iam attach-user-policy` do?",It attaches a managed IAM policy to a specified IAM user.
+What does the AWS CLI command `aws s3 presign` generate?,"It generates a pre-signed URL for an S3 object, providing temporary access to the object without requiring AWS credentials."
+"To list all of your EKS (Elastic Kubernetes Service) clusters, which AWS CLI command would you use?",aws eks list-clusters
+"What are the five programming languages currently supported by AWS CDK, with a sixth in preview?","JavaScript, TypeScript, Python, C#, Java, and Go (in preview)."
+"When you create a CDK project, which two directories contain the core application logic?",The `bin` directory (contains the App definition) and the `lib` directory (contains the Stack definitions).
+"In CDK, can you write unit tests for your infrastructure code?","Yes, you can write unit tests to verify that your infrastructure is being created with the intended properties and resources."
+What is the purpose of the `aws configure --profile <profilename>` command?,"It allows you to create and manage multiple named configuration profiles, making it easy to switch between different AWS accounts or roles."
+What does the `removalPolicy` property on an L2 CDK construct control?,"It controls what happens to the physical resource when the stack is deleted or the resource is removed from the stack (e.g., `RETAIN` or `DESTROY`)."
+How can you list the rules for a specific security group using the AWS CLI?,aws ec2 describe-security-groups --group-ids <sg-id>
+"What is the AWS CLI command to add an inbound rule to a security group, for example allowing TCP traffic on port 443 from a specific CIDR block?",aws ec2 authorize-security-group-ingress --group-id <sg-id> --protocol tcp --port 443 --cidr <cidr-block>
+"In a CDK TypeScript project, what file typically defines the entry point of the application and instantiates the stacks?",The TypeScript file located in the `bin` directory.
+How can the AWS CLI be integrated into CI/CD pipelines?,"You can use CLI commands within your pipeline scripts (e.g., in Jenkinsfile, GitHub Actions) to perform operations on AWS, such as deploying code."
